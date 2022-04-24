@@ -1,6 +1,14 @@
-[
+{
+  "notes": [
     {
-        "title":"Test Title",
-        "text":"Test text"
+      "title": "third note",
+      "text": "lets try this",
+      "id": "114d6660-c383-11ec-ae71-ebc872efc4a7"
+    },
+    {
+      "title": "dsds",
+      "text": "sdsd",
+      "id": "989e093e-e00d-4719-b7a4-6046e0e9f4e4"
     }
-]
+  ]
+}
