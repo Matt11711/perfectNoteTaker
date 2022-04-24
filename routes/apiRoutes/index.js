@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const  {notes}  = require('../../data/db.json');
+let  {notes}  = require('../../data/db.json');
 const path = require("path")
 const fs = require('fs')
 const { v4: uuidv4 } = require('uuid');
@@ -22,13 +22,13 @@ function createNewNote(body, notesArray) {
   }
 
   router.delete('/notes/:id', (req, res) => {
-    let result = notes.filter(note => note.id != req.params.id);
+    notes = notes.filter(note => note.id != req.params.id);
 console.log(result)
 fs.writeFileSync(
     path.join(__dirname, '../../data/db.json'),
     JSON.stringify({ notes: result }, null, 2)
   )
-res.json(result)
+res.json(notes)
     
   })
 
