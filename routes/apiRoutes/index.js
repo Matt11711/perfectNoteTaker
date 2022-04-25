@@ -1,16 +1,16 @@
+// sets this as a router
 const router = require('express').Router();
+// tells where to look for a the data, but doesn't declare it as const so that I can change it when I delete.
 let  {notes}  = require('../../data/db.json');
 const path = require("path")
 const fs = require('fs')
 const { v4: uuidv4 } = require('uuid');
 
-// const result = notes.filter(note => note.id != req.params.id);
-// console.log(result)
 
 
 
 
-
+// creates a new note and adds it to the notes array, then saves that to the json
 function createNewNote(body, notesArray) {
     const note = body;
     notesArray.push(note);
@@ -21,6 +21,8 @@ function createNewNote(body, notesArray) {
     return note;
   }
 
+
+//   deletes a  with a given id
   router.delete('/notes/:id', (req, res) => {
     notes = notes.filter(note => note.id != req.params.id);
 console.log(result)
@@ -32,11 +34,14 @@ res.json(notes)
     
   })
 
+//   shows the notes on screen
   router.get('/notes',(req,res) => {
     result = notes
 res.json(result)
 })
 
+
+// validates a new note before it is saved
 function validateNote(note) {
      if (!note.title || typeof note.title !== 'string') {
         return false;
@@ -46,8 +51,11 @@ function validateNote(note) {
 }
 return true };
 
+
+// post request with the data to save a new note
 router.post('/notes',(req,res) => {
     
+    // gives a unique id
 req.body.id = uuidv4();
 
      // if any data in req.body is incorrect, send 400 error back
